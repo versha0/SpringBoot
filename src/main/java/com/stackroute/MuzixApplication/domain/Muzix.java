@@ -5,30 +5,35 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.PropertySources;
+import org.springframework.core.env.Environment;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
+
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "versha")
-
+@PropertySource("classpath:application.properties")
 public class Muzix {
     @Id
     @Column(name = "id")
 
     public int id;
     @Column(name="name")
-    @Value("Sick Boy")
+
+    @Value("${in.name}")
     String name="";
 
     @Column(name="comment")
-    @Value("Awesome")
+    @Value("${in.comment}")
     String comment="";
 
 //    public Muzix(int id, String name, String comment) {
@@ -36,10 +41,9 @@ public class Muzix {
 //        this.name = name;
 //        this.comment = comment;
 //    }
-//
-//    public Muzix() {
-//    }
-//
+
+//    public Muzix() { }
+
 //    public int getId() {
 //        return id;
 //    }
