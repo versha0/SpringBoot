@@ -1,6 +1,8 @@
 package com.stackroute.MuzixApplication.domain;
 
 
+import org.springframework.beans.factory.annotation.Value;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -10,12 +12,16 @@ import javax.persistence.Table;
 @Table(name = "versha")
 public class Muzix {
     @Id
-    @Column(name="id")
-    int id;
+    @Column(name = "id")
+
+    public int id;
     @Column(name="name")
-    String name="Versha";
+    @Value("Sick Boy")
+    String name="";
+
     @Column(name="comment")
-    String comment="Vharma";
+    @Value("Awesome")
+    String comment="";
 
     public Muzix(int id, String name, String comment) {
         this.id = id;

@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(value = "/muzix")
 public class MuzixController {
@@ -33,6 +35,20 @@ public class MuzixController {
         return responseEntity;
     }
 
+    @GetMapping("/byname/{name}")
+    public ResponseEntity trackByName(@PathVariable String name) {
+        ResponseEntity responseEntity;
+//        System.out.println(muzix);
+        try {
+//            List<Muzix>  m = muzixService.trackByName(name);
+            responseEntity = new ResponseEntity<>(muzixService.trackByName(name), HttpStatus.CREATED);
+        } catch (Exception e) {
+            responseEntity = new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
+            e.printStackTrace();
+        }
+        return responseEntity;
+    }
+
 
     @GetMapping("/")
     public ResponseEntity getAllMuzix() {
@@ -45,6 +61,7 @@ public class MuzixController {
         }
         return responseEntity;
     }
+
 
 
     @DeleteMapping("/{id}")
