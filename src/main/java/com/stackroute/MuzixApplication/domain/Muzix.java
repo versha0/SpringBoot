@@ -17,6 +17,7 @@ import javax.persistence.Table;
 @Data
 @Entity
 @Table(name = "versha")
+
 public class Muzix {
     @Id
     @Column(name = "id")
