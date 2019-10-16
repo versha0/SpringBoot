@@ -21,19 +21,19 @@ import javax.persistence.Table;
 @NoArgsConstructor
 @Entity
 @Table(name = "versha")
-@PropertySource("classpath:application.properties")
+
 public class Muzix {
+
     @Id
     @Column(name = "id")
 
     public int id;
     @Column(name="name")
 
-    @Value("${in.name}")
+    
     String name="";
 
     @Column(name="comment")
-    @Value("${in.comment}")
     String comment="";
 
 //    public Muzix(int id, String name, String comment) {
