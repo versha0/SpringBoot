@@ -5,7 +5,6 @@ import com.stackroute.MuzixApplication.exception.MuzixAlreadyExists;
 import com.stackroute.MuzixApplication.exception.MuzixNotFoundException;
 import com.stackroute.MuzixApplication.repository.MuzixRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
@@ -14,13 +13,13 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@Primary
-@Profile("prod")
-public class MuzixServiceImpl implements MuzixService {
+@Profile("dev")
+public class TrackDummyImpl implements MuzixService {
 
-    MuzixRepository muzixRepository;
+    private MuzixRepository muzixRepository;
     @Autowired
-    MuzixServiceImpl(MuzixRepository muzixRepository){
+    TrackDummyImpl(MuzixRepository muzixRepository){
+        System.out.println("created");
         this.muzixRepository = muzixRepository;
     }
 
@@ -32,9 +31,8 @@ public class MuzixServiceImpl implements MuzixService {
 
     @Override
     public void updateMuzixByComment(Muzix musix,String comment) {
-
         musix.setComment(comment);
-
+        System.out.println(comment);
         muzixRepository.save(musix);
 
     }
@@ -43,6 +41,7 @@ public class MuzixServiceImpl implements MuzixService {
     public void deleteMuzixById(int id) throws MuzixNotFoundException {
         if(muzixRepository.findById(id).isPresent()) {
             muzixRepository.deleteById(id);
+            System.out.println("id to delete");
         } else {
             throw new MuzixNotFoundException("Not found the Muzix");
         }
@@ -56,7 +55,7 @@ public class MuzixServiceImpl implements MuzixService {
             throw new MuzixAlreadyExists("Already in the database");
 
         }
-               return muzixRepository.save(muzix);
+        return muzixRepository.save(muzix);
     }
 
     @Override
@@ -73,7 +72,7 @@ public class MuzixServiceImpl implements MuzixService {
         if(muzixRepository.findTitleByName(name).isEmpty()){
             throw new MuzixNotFoundException("Not found in the database");
         }
-       return  muzixRepository.findTitleByName(name);
+        return  muzixRepository.findTitleByName(name);
     }
 
 
