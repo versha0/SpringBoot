@@ -4,12 +4,13 @@ import com.stackroute.MuzixApplication.domain.Muzix;
 import com.stackroute.MuzixApplication.exception.MuzixNotFoundException;
 import com.stackroute.MuzixApplication.service.MuzixService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@PropertySource("classpath:application-mongerdb.properties")
 @RestController
 @RequestMapping(value = "/muzix")
 public class MuzixController {

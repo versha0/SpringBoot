@@ -10,30 +10,31 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.PropertySources;
 import org.springframework.core.env.Environment;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
+@Document
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
+
 @Table(name = "versha")
 
 public class Muzix {
 
-    @Id
-    @Column(name = "id")
 
+  //  @Column(name = "id")
+   @Id
     public int id;
-    @Column(name="name")
+  //  @Column(name="name")
 
     
     String name="";
 
-    @Column(name="comment")
+  //  @Column(name="comment")
     String comment="";
 
 //    public Muzix(int id, String name, String comment) {
